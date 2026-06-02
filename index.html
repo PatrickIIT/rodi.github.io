@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RODI — Product Roadmap & Business Model</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --teal-dark:  #04342C;
+    --teal-mid:   #0F6E56;
+    --teal-main:  #1D9E75;
+    --teal-light: #5DCAA5;
+    --teal-pale:  #E1F5EE;
+    --gold:       #C9973A;
+    --gold-light: #FAC775;
+    --gold-pale:  #FAEEDA;
+    --amber:      #EF9F27;
+    --coral:      #D85A30;
+    --coral-pale: #FAECE7;
+    --navy:       #042C53;
+    --navy-mid:   #185FA5;
+    --cream:      #F7F5F0;
+    --warm-white: #FDFCF9;
+    --ink:        #1A1A18;
+    --ink-mid:    #3D3D38;
+    --ink-light:  #7A7A72;
+    --border:     rgba(26,26,24,0.1);
+    --border-strong: rgba(26,26,24,0.2);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(253,252,249,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-mark {
+    width: 28px; height: 28px; background: var(--teal-main);
+    border-radius: 7px; display: flex; align-items: center; justify-content: center;
+    font-family: 'DM Serif Display', serif; color: white; font-size: 14px; letter-spacing: -0.02em;
+  }
+  .nav-brand { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--ink); }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { font-size: 12px; font-weight: 500; color: var(--ink-light); text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--teal-main); }
+  .nav-badge { font-size: 11px; background: var(--teal-main); color: white; padding: 3px 10px; border-radius: 20px; font-weight: 500; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: var(--teal-dark);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 8rem 3rem 5rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0; opacity: 0.04;
+    background-image: linear-gradient(var(--teal-light) 1px, transparent 1px),
+                      linear-gradient(90deg, var(--teal-light) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-circle {
+    position: absolute; right: -180px; top: 50%; transform: translateY(-50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    border: 1px solid rgba(93,202,165,0.08);
+  }
+  .hero-circle::before {
+    content: ''; position: absolute; inset: 60px; border-radius: 50%;
+    border: 1px solid rgba(93,202,165,0.06);
+  }
+  .hero-circle::after {
+    content: ''; position: absolute; inset: 120px; border-radius: 50%;
+    border: 1px solid rgba(93,202,165,0.05);
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.08);
+    border: 0.5px solid rgba(255,255,255,0.15);
+    color: var(--teal-light);
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 20px;
+    margin-bottom: 2.5rem; width: fit-content;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(5rem, 12vw, 10rem);
+    color: white; line-height: 0.9;
+    margin-bottom: 0.25rem;
+    letter-spacing: -0.02em;
+  }
+  .hero-sub-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: var(--gold-light);
+    font-style: italic;
+    margin-bottom: 2rem;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+  }
+  .hero-desc {
+    font-size: 18px; color: rgba(255,255,255,0.55);
+    max-width: 520px; margin-bottom: 3rem; font-weight: 300; line-height: 1.7;
+  }
+  .hero-stats {
+    display: flex; gap: 3rem; flex-wrap: wrap;
+    border-top: 0.5px solid rgba(255,255,255,0.1);
+    padding-top: 2.5rem;
+  }
+  .hero-stat-num { font-family: 'DM Serif Display', serif; font-size: 2.8rem; color: white; line-height: 1; }
+  .hero-stat-label { font-size: 12px; color: rgba(255,255,255,0.4); letter-spacing: 0.05em; text-transform: uppercase; margin-top: 4px; }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; right: 3rem;
+    font-size: 11px; color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em; text-transform: uppercase;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .hero-scroll::before { content: ''; width: 40px; height: 0.5px; background: rgba(255,255,255,0.2); }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+  section:nth-child(even) { background: var(--cream); }
+  .section-label {
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--teal-main); margin-bottom: 0.75rem;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 0.5px; background: var(--teal-main); opacity: 0.3; }
+  h2 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--ink); line-height: 1.15; margin-bottom: 1rem;
+  }
+  .section-intro { font-size: 16px; color: var(--ink-light); max-width: 560px; margin-bottom: 3rem; font-weight: 300; }
+
+  /* ── NAME BREAKDOWN ── */
+  .name-breakdown {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border-radius: 16px; overflow: hidden;
+    border: 0.5px solid var(--border); margin-bottom: 3rem;
+  }
+  .name-cell {
+    background: white; padding: 2rem 1.75rem;
+    position: relative; overflow: hidden;
+  }
+  .name-cell::after {
+    content: attr(data-letter);
+    position: absolute; right: -10px; bottom: -20px;
+    font-family: 'DM Serif Display', serif;
+    font-size: 7rem; color: rgba(26,26,24,0.04); line-height: 1;
+    pointer-events: none;
+  }
+  .name-letter {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem; line-height: 1; margin-bottom: 6px;
+  }
+  .name-word { font-size: 13px; font-weight: 600; letter-spacing: 0.03em; margin-bottom: 6px; }
+  .name-meaning { font-size: 12px; color: var(--ink-light); line-height: 1.5; }
+
+  /* ── CORE MECHANIC ── */
+  .mechanic-box {
+    background: var(--teal-dark); border-radius: 16px;
+    padding: 3rem; display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
+  }
+  .mechanic-quote {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.7rem; color: white; line-height: 1.35;
+  }
+  .mechanic-quote em { color: var(--gold-light); font-style: italic; }
+  .mechanic-pillars { display: flex; flex-direction: column; gap: 0.75rem; }
+  .pillar {
+    background: rgba(255,255,255,0.06);
+    border: 0.5px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 1rem 1.25rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+  }
+  .pillar-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 16px;
+  }
+  .pillar-title { font-size: 13px; font-weight: 500; color: white; }
+  .pillar-desc { font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 2px; }
+
+  /* ── PRODUCT ECOSYSTEM ── */
+  .ecosystem-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .eco-card {
+    background: white; border: 0.5px solid var(--border);
+    border-radius: 14px; padding: 1.75rem;
+    position: relative; overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .eco-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,0.07); }
+  .eco-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  }
+  .eco-card.earn::before  { background: var(--teal-main); }
+  .eco-card.wallet::before { background: var(--navy-mid); }
+  .eco-card.redeem::before { background: var(--gold); }
+  .eco-type { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 1rem; }
+  .eco-card.earn .eco-type   { color: var(--teal-main); }
+  .eco-card.wallet .eco-type { color: var(--navy-mid); }
+  .eco-card.redeem .eco-type { color: var(--gold); }
+  .eco-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.4rem; margin-bottom: 0.75rem; color: var(--ink); }
+  .eco-card p  { font-size: 13px; color: var(--ink-light); line-height: 1.6; margin-bottom: 1.25rem; }
+  .action-list { list-style: none; }
+  .action-list li {
+    font-size: 12px; padding: 7px 0;
+    border-bottom: 0.5px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    color: var(--ink-mid);
+  }
+  .action-list li:last-child { border-bottom: none; }
+  .pts { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 500; white-space: nowrap; }
+  .pts.earn    { color: var(--teal-mid); background: var(--teal-pale); padding: 2px 7px; border-radius: 4px; }
+  .pts.redeem  { color: #7A4F00; background: var(--gold-pale); padding: 2px 7px; border-radius: 4px; }
+  .pts.core    { color: var(--navy-mid); background: #E6F1FB; padding: 2px 7px; border-radius: 4px; }
+
+  /* ── SCORE ── */
+  .score-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start; }
+  .score-visual {
+    background: var(--teal-dark); border-radius: 16px;
+    padding: 2.5rem; text-align: center; position: sticky; top: 72px;
+  }
+  .score-label-top { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 1rem; }
+  .score-ring {
+    width: 140px; height: 140px; border-radius: 50%;
+    border: 6px solid rgba(255,255,255,0.1);
+    border-top-color: var(--teal-light);
+    border-right-color: var(--teal-light);
+    border-bottom-color: var(--teal-light);
+    margin: 0 auto 1.25rem;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .score-number { font-family: 'DM Serif Display', serif; font-size: 3rem; color: white; line-height: 1; }
+  .score-max { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .score-tier {
+    display: inline-block;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+    background: rgba(250,199,117,0.2); color: var(--gold-light);
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 1.5rem;
+  }
+  .score-attrs { text-align: left; display: flex; flex-direction: column; gap: 8px; }
+  .score-attr {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 12px;
+  }
+  .score-attr-name { color: rgba(255,255,255,0.5); }
+  .score-attr-bar { flex: 1; height: 3px; background: rgba(255,255,255,0.1); margin: 0 10px; border-radius: 2px; overflow: hidden; }
+  .score-attr-fill { height: 100%; background: var(--teal-light); border-radius: 2px; }
+  .score-attr-val { font-family: 'DM Mono', monospace; font-size: 11px; color: rgba(255,255,255,0.6); }
+  .score-benefits { display: flex; flex-direction: column; gap: 1rem; }
+  .benefit-card {
+    background: white; border: 0.5px solid var(--border);
+    border-radius: 12px; padding: 1.25rem 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+    transition: transform 0.2s;
+  }
+  .benefit-card:hover { transform: translateX(4px); }
+  .benefit-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .benefit-title { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 3px; }
+  .benefit-desc { font-size: 12px; color: var(--ink-light); line-height: 1.5; }
+  .benefit-score { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--teal-mid); margin-top: 6px; }
+
+  /* ── ROADMAP ── */
+  .roadmap { position: relative; }
+  .roadmap-line { position: absolute; left: 120px; top: 0; bottom: 0; width: 1px; background: var(--border-strong); }
+  .phase {
+    display: grid; grid-template-columns: 120px 1fr; gap: 2.5rem;
+    margin-bottom: 3rem; position: relative;
+  }
+  .phase-time { text-align: right; padding-top: 6px; font-size: 12px; color: var(--ink-light); font-weight: 500; }
+  .phase-dot {
+    position: absolute; left: 113px; top: 8px;
+    width: 15px; height: 15px; border-radius: 50%;
+    border: 2px solid var(--cream); z-index: 1;
+  }
+  .phase-1 .phase-dot { background: var(--teal-main); }
+  .phase-2 .phase-dot { background: var(--gold); }
+  .phase-3 .phase-dot { background: var(--navy-mid); }
+  .phase-4 .phase-dot { background: var(--coral); }
+  .phase-content {
+    background: white; border: 0.5px solid var(--border);
+    border-radius: 14px; padding: 1.75rem;
+  }
+  .phase-header { display: flex; align-items: center; gap: 12px; margin-bottom: 0.75rem; }
+  .phase-badge {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .phase-1 .phase-badge { background: var(--teal-pale); color: var(--teal-mid); }
+  .phase-2 .phase-badge { background: var(--gold-pale); color: #7A4F00; }
+  .phase-3 .phase-badge { background: #E6F1FB; color: var(--navy-mid); }
+  .phase-4 .phase-badge { background: var(--coral-pale); color: var(--coral); }
+  .phase-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--ink); }
+  .phase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem; }
+  .phase-col-label { font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.5rem; font-weight: 600; }
+  .phase-items { list-style: none; }
+  .phase-items li { font-size: 13px; color: var(--ink-mid); padding: 4px 0; display: flex; align-items: flex-start; gap: 8px; }
+  .phase-items li::before { content: '—'; color: var(--border-strong); flex-shrink: 0; margin-top: 1px; }
+  .phase-kpi {
+    margin-top: 1.25rem; padding-top: 1.25rem;
+    border-top: 0.5px solid var(--border);
+    display: flex; gap: 2rem; flex-wrap: wrap;
+  }
+  .kpi-num { font-family: 'DM Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--ink); }
+  .kpi-label { font-size: 11px; color: var(--ink-light); margin-top: 1px; }
+
+  /* ── BUSINESS MODEL ── */
+  .biz-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+  .biz-card {
+    background: white; border: 0.5px solid var(--border);
+    border-radius: 14px; padding: 2rem;
+  }
+  .biz-card.featured {
+    background: var(--teal-dark); border-color: var(--teal-dark);
+    grid-column: span 2;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
+  }
+  .biz-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.25rem; margin-bottom: 0.5rem; }
+  .biz-card.featured h3 { color: white; }
+  .biz-card.featured p  { color: rgba(255,255,255,0.5); font-size: 14px; line-height: 1.6; }
+  .biz-desc { font-size: 13px; color: var(--ink-light); margin-bottom: 1.25rem; line-height: 1.6; }
+  .stream {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 0.5px solid var(--border); font-size: 13px;
+  }
+  .stream:last-child { border-bottom: none; }
+  .stream-name { color: var(--ink-mid); }
+  .stream-amt  { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; color: var(--teal-mid); }
+  .revenue-total {
+    margin-top: 1rem; padding: 0.75rem 1rem;
+    background: var(--teal-pale); border-radius: 8px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .revenue-total-label { font-size: 12px; font-weight: 500; color: var(--teal-dark); }
+  .revenue-total-num   { font-family: 'DM Mono', monospace; font-size: 1.1rem; font-weight: 500; color: var(--teal-dark); }
+  .partner-tiers { display: flex; flex-direction: column; gap: 0.75rem; }
+  .tier {
+    border-radius: 8px; padding: 0.75rem 1rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .tier.dhahabu { background: var(--gold-pale); }
+  .tier.fedha   { background: #F1F3F5; }
+  .tier.shaba   { background: rgba(255,255,255,0.06); border: 0.5px solid rgba(255,255,255,0.1); }
+  .tier-name  { font-size: 13px; font-weight: 500; }
+  .tier.dhahabu .tier-name { color: #7A4F00; }
+  .tier.fedha   .tier-name { color: #3D4F5C; }
+  .tier.shaba   .tier-name { color: rgba(255,255,255,0.7); }
+  .tier-val   { font-family: 'DM Mono', monospace; font-size: 12px; font-weight: 500; }
+  .tier.dhahabu .tier-val { color: #7A4F00; }
+  .tier.fedha   .tier-val { color: #3D4F5C; }
+  .tier.shaba   .tier-val { color: rgba(255,255,255,0.6); }
+  .tier-perks { font-size: 11px; color: var(--ink-light); margin-top: 2px; }
+  .tier.shaba .tier-perks { color: rgba(255,255,255,0.35); }
+
+  /* ── FLYWHEEL ── */
+  .flywheel-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; }
+  .flywheel-svg-area { position: relative; }
+  .flywheel-steps { display: flex; flex-direction: column; gap: 0; }
+  .fw-step {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.25rem 0; border-bottom: 0.5px solid var(--border);
+  }
+  .fw-step:last-child { border-bottom: none; }
+  .fw-num {
+    font-family: 'DM Serif Display', serif; font-size: 1.5rem;
+    line-height: 1; color: var(--border-strong); flex-shrink: 0; width: 28px;
+  }
+  .fw-title { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+  .fw-desc  { font-size: 13px; color: var(--ink-light); line-height: 1.55; }
+
+  /* ── STAKEHOLDERS ── */
+  .stake-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .stake-card {
+    background: white; border: 0.5px solid var(--border);
+    border-radius: 14px; padding: 1.75rem; position: relative;
+  }
+  .stake-num {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 3rem; color: var(--border); line-height: 1;
+  }
+  .stake-card h3 { font-family: 'DM Serif Display', serif; font-size: 1.15rem; margin-bottom: 0.5rem; }
+  .stake-card p  { font-size: 13px; color: var(--ink-light); line-height: 1.6; margin-bottom: 1rem; }
+  .stake-gets { list-style: none; }
+  .stake-gets li { font-size: 12px; color: var(--ink-mid); padding: 3px 0; display: flex; gap: 7px; }
+  .stake-gets li::before { content: '✓'; color: var(--teal-main); font-weight: 600; flex-shrink: 0; }
+
+  /* ── TECH STACK ── */
+  .tech-stack {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+    background: var(--border); border-radius: 14px; overflow: hidden;
+    border: 0.5px solid var(--border);
+  }
+  .tech-layer { background: white; padding: 1.5rem; }
+  .tech-layer-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-light); margin-bottom: 0.75rem; }
+  .tech-layer h4 { font-size: 14px; font-weight: 500; margin-bottom: 0.5rem; }
+  .tech-list { list-style: none; }
+  .tech-list li { font-size: 12px; color: var(--ink-light); padding: 3px 0; }
+
+  /* ── RISK ── */
+  .risk-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .risk-card { border-radius: 12px; padding: 1.25rem 1.5rem; border-left: 3px solid; }
+  .risk-card.high { border-color: #E24B4A; background: #FCEBEB; }
+  .risk-card.med  { border-color: var(--amber); background: var(--gold-pale); }
+  .risk-card.low  { border-color: var(--teal-main); background: var(--teal-pale); }
+  .risk-label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  .risk-card.high .risk-label { color: #A32D2D; }
+  .risk-card.med  .risk-label { color: #854F0B; }
+  .risk-card.low  .risk-label { color: var(--teal-mid); }
+  .risk-title      { font-size: 14px; font-weight: 500; color: var(--ink); margin-bottom: 0.4rem; }
+  .risk-mitigation { font-size: 12px; color: var(--ink-light); line-height: 1.55; }
+
+  /* ── METRICS BANNER ── */
+  .metrics-banner {
+    background: var(--teal-dark); border-radius: 16px;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 1px;
+    overflow: hidden; margin-top: 3rem;
+  }
+  .metric-cell {
+    padding: 2rem 1.5rem; background: var(--teal-dark);
+    border-right: 0.5px solid rgba(255,255,255,0.08);
+    text-align: center;
+  }
+  .metric-cell:last-child { border-right: none; }
+  .metric-val { font-family: 'DM Serif Display', serif; font-size: 2.2rem; color: white; line-height: 1; margin-bottom: 6px; }
+  .metric-label { font-size: 11px; color: rgba(255,255,255,0.4); letter-spacing: 0.04em; line-height: 1.4; }
+
+  /* ── FOOTER ── */
+  footer { background: var(--teal-dark); padding: 4rem 3rem; text-align: center; }
+  .footer-logo { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: white; margin-bottom: 0.5rem; }
+  .footer-logo em { color: var(--gold-light); font-style: italic; }
+  .footer-tagline { color: rgba(255,255,255,0.4); font-size: 14px; font-weight: 300; letter-spacing: 0.04em; margin-bottom: 1rem; }
+  footer p { color: rgba(255,255,255,0.25); font-size: 12px; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .name-breakdown { grid-template-columns: repeat(2, 1fr); }
+    .mechanic-box, .flywheel-wrap, .score-grid { grid-template-columns: 1fr; }
+    .ecosystem-grid, .phase-grid, .biz-grid, .stake-grid { grid-template-columns: 1fr; }
+    .biz-card.featured { grid-column: span 1; }
+    .tech-stack { grid-template-columns: repeat(2, 1fr); }
+    .risk-grid { grid-template-columns: 1fr; }
+    .metrics-banner { grid-template-columns: repeat(2, 1fr); }
+    .roadmap-line { display: none; }
+    .phase { grid-template-columns: 1fr; }
+    .phase-time { text-align: left; }
+    .phase-dot { display: none; }
+    .hero-circle { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="nav-mark">R</div>
+    <span class="nav-brand">RODI</span>
+  </a>
+  <div class="nav-links">
+    <a href="#vision">Vision</a>
+    <a href="#product">Product</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#business">Business Model</a>
+    <a href="#tech">Technology</a>
+  </div>
+  <span class="nav-badge">Confidential · 2025</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-circle"></div>
+  <div class="hero-tag">
+    <svg width="8" height="8" viewBox="0 0 8 8" fill="currentColor"><circle cx="4" cy="4" r="4"/></svg>
+    Tanzania Revenue Authority · Tax Innovation Platform · 2025–2028
+  </div>
+  <h1>RODI</h1>
+  <div class="hero-sub-name">Rudisha · Ongeza · Develop · Inspire</div>
+  <p class="hero-desc">Tanzania's first AI-powered tax companion that turns compliance into social capital — giving youth a reason to pay taxes before enforcement ever needs to arrive.</p>
+  <div class="hero-stats">
+    <div>
+      <div class="hero-stat-num">17M+</div>
+      <div class="hero-stat-label">Youth aged 15–35 in Tanzania</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">32.27T</div>
+      <div class="hero-stat-label">TZS collected FY 2024/25 by TRA</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">&lt;30%</div>
+      <div class="hero-stat-label">Informal economy tax coverage today</div>
+    </div>
+    <div>
+      <div class="hero-stat-num">#1</div>
+      <div class="hero-stat-label">First civic tax gamification platform in Africa</div>
+    </div>
+  </div>
+  <div class="hero-scroll">Scroll to explore</div>
+</div>
+
+<!-- VISION -->
+<section id="vision">
+  <div class="section-label">01 — Vision &amp; Name</div>
+  <h2>The name does the work</h2>
+  <p class="section-intro">Every great platform becomes a verb. <em>M-Pesa</em> changed how Tanzania pays. <em>RODI</em> changes how Tanzania thinks about tax.</p>
+
+  <div class="name-breakdown">
+    <div class="name-cell" data-letter="R">
+      <div class="name-letter" style="color: var(--teal-main)">R</div>
+      <div class="name-word">Rudisha</div>
+      <div class="name-meaning">Swahili: "to return / give back." Filing taxes = giving back to your country. A reframe, not a slogan.</div>
+    </div>
+    <div class="name-cell" data-letter="O">
+      <div class="name-letter" style="color: var(--gold)">O</div>
+      <div class="name-word">Ongeza</div>
+      <div class="name-meaning">Swahili: "to increase / grow." Every RODI user grows Tanzania's tax base and their own economic standing.</div>
+    </div>
+    <div class="name-cell" data-letter="D">
+      <div class="name-letter" style="color: var(--navy-mid)">D</div>
+      <div class="name-word">Develop</div>
+      <div class="name-meaning">The platform develops the user — building financial identity, skills, and access to opportunity over time.</div>
+    </div>
+    <div class="name-cell" data-letter="I">
+      <div class="name-letter" style="color: var(--coral)">I</div>
+      <div class="name-word">Inspire</div>
+      <div class="name-meaning">A generation that was never civic becomes the generation that builds the country. Aspiration, not obligation.</div>
+    </div>
+  </div>
+
+  <div class="mechanic-box">
+    <div>
+      <div class="mechanic-quote">"Stop making youth <em>fear</em> tax. Make them <em>compete</em> for it."</div>
+      <p style="color:rgba(255,255,255,0.4); font-size:14px; margin-top:1.5rem; font-weight:300; line-height:1.7;">RODI works because it meets youth where they already live — phones, social media, status games — and redirects that energy toward compliance. The RODI Score becomes a social credential. Paying taxes becomes a flex.</p>
+    </div>
+    <div class="mechanic-pillars">
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(29,158,117,0.2);">🎮</div>
+        <div>
+          <div class="pillar-title">Burudani — The Hook</div>
+          <div class="pillar-desc">Gamification, badges, streaks, leaderboards. Youth join for the game and stay for the rewards.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(201,151,58,0.2);">💼</div>
+        <div>
+          <div class="pillar-title">Ajira — The Reward</div>
+          <div class="pillar-desc">RODI Score unlocks loans, jobs, and financial products. Compliance = career capital.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(93,202,165,0.15);">🤖</div>
+        <div>
+          <div class="pillar-title">Akili — The Engine</div>
+          <div class="pillar-desc">AI assistant in Kiswahili. Answers tax questions on WhatsApp in seconds, not hours.</div>
+        </div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon" style="background:rgba(255,255,255,0.08);">🏆</div>
+        <div>
+          <div class="pillar-title">Utambuzi — The Identity</div>
+          <div class="pillar-desc">Your RODI Score is your economic fingerprint. The first verifiable identity for informal workers.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT ECOSYSTEM -->
+<section id="product" style="background:var(--cream);">
+  <div class="section-label">02 — Product Ecosystem</div>
+  <h2>How RODI works</h2>
+  <p class="section-intro">Three interlocking layers — earn points through compliance, accumulate a RODI Score, unlock real economic benefits. Simple to explain. Powerful at scale.</p>
+
+  <div class="ecosystem-grid">
+    <div class="eco-card earn">
+      <div class="eco-type">Earn</div>
+      <h3>Tax Compliance Actions</h3>
+      <p>Every compliance action earns XP. Youth compete, refer friends, and build streaks. The actions are verified by TRA's existing IDRAS system.</p>
+      <ul class="action-list">
+        <li><span>Register a TIN for the first time</span><span class="pts earn">+200 pts</span></li>
+        <li><span>File monthly tax return (on time)</span><span class="pts earn">+50 pts</span></li>
+        <li><span>3-month compliance streak</span><span class="pts earn">+150 pts</span></li>
+        <li><span>Refer a boda boda / mama lishe</span><span class="pts earn">+100 pts</span></li>
+        <li><span>Attend RODI tax literacy event</span><span class="pts earn">+75 pts</span></li>
+        <li><span>Complete Kiswahili tax quiz</span><span class="pts earn">+30 pts</span></li>
+        <li><span>Register an informal business</span><span class="pts earn">+300 pts</span></li>
+        <li><span>Share EFD receipt (verified)</span><span class="pts earn">+20 pts</span></li>
+      </ul>
+    </div>
+
+    <div class="eco-card wallet">
+      <div class="eco-type">Platform</div>
+      <h3>RODI Score &amp; Wallet</h3>
+      <p>A national compliance identity — like a credit score, but built on tax history. Works via WhatsApp, USSD, app, or web. No smartphone required.</p>
+      <ul class="action-list">
+        <li><span>RODI Score (0–900) visible on profile</span><span class="pts core">Core</span></li>
+        <li><span>NIDA-verified identity layer</span><span class="pts core">Core</span></li>
+        <li><span>AI tax assistant in Kiswahili</span><span class="pts core">Core</span></li>
+        <li><span>USSD fallback (*RODI#)</span><span class="pts core">Core</span></li>
+        <li><span>Social share card (leaderboard)</span><span class="pts core">Phase 1</span></li>
+        <li><span>Bank + fintech Score API access</span><span class="pts core">Phase 2</span></li>
+        <li><span>Employer verification badge</span><span class="pts core">Phase 2</span></li>
+        <li><span>Open API for partners</span><span class="pts core">Phase 3</span></li>
+      </ul>
+    </div>
+
+    <div class="eco-card redeem">
+      <div class="eco-type">Unlock</div>
+      <h3>Real Economic Benefits</h3>
+      <p>RODI Score isn't points to spend — it's a key that unlocks economic opportunity. High score = fast-tracked access to Tanzania's financial system.</p>
+      <ul class="action-list">
+        <li><span>CRDB / NMB loan fast-track</span><span class="pts redeem">Score 600+</span></li>
+        <li><span>Employer "RODI Verified" badge</span><span class="pts redeem">Score 500+</span></li>
+        <li><span>Nala / Tigo Pesa fee discounts</span><span class="pts redeem">Score 400+</span></li>
+        <li><span>Insurance premium reduction</span><span class="pts redeem">Score 550+</span></li>
+        <li><span>Priority Ajira job listings</span><span class="pts redeem">Score 450+</span></li>
+        <li><span>TRA VIP service lane</span><span class="pts redeem">Score 700+</span></li>
+        <li><span>Burudani partner discounts</span><span class="pts redeem">Score 300+</span></li>
+        <li><span>Startup accelerator access</span><span class="pts redeem">Score 750+</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RODI SCORE -->
+<section id="score">
+  <div class="section-label">03 — RODI Score</div>
+  <h2>The economic identity layer</h2>
+  <p class="section-intro">The RODI Score is the product's heartbeat — the mechanism that transforms compliance history into economic power for informal workers and youth who were previously invisible to the financial system.</p>
+
+  <div class="score-grid">
+    <div class="score-visual">
+      <div class="score-label-top">Sample RODI Score</div>
+      <div class="score-ring">
+        <div class="score-number">742</div>
+        <div class="score-max">/ 900</div>
+      </div>
+      <div class="score-tier">Dhahabu Tier ★</div>
+      <div class="score-attrs">
+        <div class="score-attr">
+          <span class="score-attr-name">Filing history</span>
+          <div class="score-attr-bar"><div class="score-attr-fill" style="width:90%"></div></div>
+          <span class="score-attr-val">90%</span>
+        </div>
+        <div class="score-attr">
+          <span class="score-attr-name">On-time rate</span>
+          <div class="score-attr-bar"><div class="score-attr-fill" style="width:85%"></div></div>
+          <span class="score-attr-val">85%</span>
+        </div>
+        <div class="score-attr">
+          <span class="score-attr-name">Referrals</span>
+          <div class="score-attr-bar"><div class="score-attr-fill" style="width:60%"></div></div>
+          <span class="score-attr-val">60%</span>
+        </div>
+        <div class="score-attr">
+          <span class="score-attr-name">Streak bonus</span>
+          <div class="score-attr-bar"><div class="score-attr-fill" style="width:75%"></div></div>
+          <span class="score-attr-val">75%</span>
+        </div>
+        <div class="score-attr">
+          <span class="score-attr-name">Business reg.</span>
+          <div class="score-attr-bar"><div class="score-attr-fill" style="width:50%"></div></div>
+          <span class="score-attr-val">50%</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="score-benefits">
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:var(--teal-pale);">🏦</div>
+        <div>
+          <div class="benefit-title">Financial inclusion from zero</div>
+          <div class="benefit-desc">A fundi wa mitandaoni (online freelancer) who has never had a bank account can build a RODI Score from their first TIN registration. After 6 months of compliance, they qualify for NMB's micro-loan programme without collateral.</div>
+          <div class="benefit-score">Requires: Score 500+ · 6 months filing history</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:var(--gold-pale);">📋</div>
+        <div>
+          <div class="benefit-title">The CV that TRA writes for you</div>
+          <div class="benefit-desc">Employers can request a candidate's RODI Verified badge with consent. It signals financial discipline, civic responsibility, and formal economic participation — qualities no school certificate proves.</div>
+          <div class="benefit-score">Requires: Score 450+ · Candidate consent</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:#E6F1FB;">📱</div>
+        <div>
+          <div class="benefit-title">Fintech fast-lane</div>
+          <div class="benefit-desc">Nala, Tigo Pesa, and future fintech partners integrate the RODI Score API. High-score users get lower transaction fees, higher wallet limits, and preferred onboarding — consent-gated, always.</div>
+          <div class="benefit-score">Requires: Score 400+ · Partner integration</div>
+        </div>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon" style="background:var(--coral-pale);">🏆</div>
+        <div>
+          <div class="benefit-title">Social status as a product feature</div>
+          <div class="benefit-desc">A shareable "Tax Champion" card shows your rank, tier, and streak. Leaderboards run by ward, shule ya zamani, and industry. Being in the top 10% of your neighbourhood becomes something youth brag about.</div>
+          <div class="benefit-score">Requires: Score 700+ · Dhahabu Tier</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROADMAP -->
+<section id="roadmap" style="background:var(--cream);">
+  <div class="section-label">04 — Product Roadmap</div>
+  <h2>Four phases to scale</h2>
+  <p class="section-intro">From pilot to Pan-African model in 36 months. Each phase builds on TRA's existing infrastructure — IDRAS, TIN, and the taxpayer portal — so nothing starts from scratch.</p>
+
+  <div class="roadmap">
+    <div class="roadmap-line"></div>
+
+    <div class="phase phase-1">
+      <div class="phase-time">Months<br>1–6</div>
+      <div class="phase-dot"></div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <span class="phase-badge">Phase 1</span>
+          <span class="phase-title">Foundation — Core App &amp; Pilot</span>
+        </div>
+        <p style="font-size:13px;color:var(--ink-light);margin-bottom:1rem;">Dar es Salaam and Dodoma only. Controlled cohort of 50,000 youth. Build the compliance loop, prove the engagement mechanics, and win TRA's internal stakeholders.</p>
+        <div class="phase-grid">
+          <div>
+            <div class="phase-col-label">Build</div>
+            <ul class="phase-items">
+              <li>WhatsApp AI assistant (Kiswahili-first)</li>
+              <li>USSD fallback — works on any phone</li>
+              <li>NIDA integration for identity verification</li>
+              <li>TIN registration in under 3 minutes</li>
+              <li>RODI Score v1 — compliance indicator</li>
+              <li>Integration with TRA's IDRAS portal</li>
+              <li>TRA admin dashboard — real-time metrics</li>
+            </ul>
+          </div>
+          <div>
+            <div class="phase-col-label">Measure</div>
+            <ul class="phase-items">
+              <li>New TIN registrations per week</li>
+              <li>First-filing completion rate</li>
+              <li>WhatsApp bot query resolution rate</li>
+              <li>Score 300+ users after 3 months</li>
+              <li>Referral chain depth (user → friends)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-kpi">
+          <div class="kpi-item"><div class="kpi-num">50,000</div><div class="kpi-label">New TIN registrations</div></div>
+          <div class="kpi-item"><div class="kpi-num">65%</div><div class="kpi-label">Target: monthly active filers</div></div>
+          <div class="kpi-item"><div class="kpi-num">3 min</div><div class="kpi-label">TIN registration time (target)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase phase-2">
+      <div class="phase-time">Months<br>7–14</div>
+      <div class="phase-dot"></div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <span class="phase-badge">Phase 2</span>
+          <span class="phase-title">Gamification — Make Compliance Addictive</span>
+        </div>
+        <p style="font-size:13px;color:var(--ink-light);margin-bottom:1rem;">National rollout across all regions. Mobile app launches alongside WhatsApp and USSD channels. Social mechanics activated — leaderboards, badges, streaks go live.</p>
+        <div class="phase-grid">
+          <div>
+            <div class="phase-col-label">Build</div>
+            <ul class="phase-items">
+              <li>Android + iOS app (Swahili-first UI)</li>
+              <li>XP points, badges, and streak system</li>
+              <li>Ward and city-level leaderboards</li>
+              <li>"Tax Champion" shareable social cards</li>
+              <li>Referral engine: earn XP for boda/mama lishe</li>
+              <li>RODI Score v2 — public, shareable profile</li>
+              <li>In-app Kiswahili tax education modules</li>
+            </ul>
+          </div>
+          <div>
+            <div class="phase-col-label">Partnerships</div>
+            <ul class="phase-items">
+              <li>Vodacom, Airtel, TTCL — data bundles for filers</li>
+              <li>Tigo Pesa, Nala — fintech Score integration</li>
+              <li>Bongo music promoters — burudani rewards</li>
+              <li>Ajira Portal (government) — job listing sync</li>
+              <li>VETA &amp; university credit integration</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-kpi">
+          <div class="kpi-item"><div class="kpi-num">300K</div><div class="kpi-label">Monthly active users</div></div>
+          <div class="kpi-item"><div class="kpi-num">20+</div><div class="kpi-label">Partner integrations</div></div>
+          <div class="kpi-item"><div class="kpi-num">TSh 1.2B</div><div class="kpi-label">Year 1 revenue</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase phase-3">
+      <div class="phase-time">Months<br>15–24</div>
+      <div class="phase-dot"></div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <span class="phase-badge">Phase 3</span>
+          <span class="phase-title">Marketplace — Score Unlocks Opportunity</span>
+        </div>
+        <p style="font-size:13px;color:var(--ink-light);margin-bottom:1rem;">RODI Score becomes Tanzania's de facto economic identity for informal workers. Banks, employers, and fintechs integrate the Score API. The compliance loop becomes a financial ladder.</p>
+        <div class="phase-grid">
+          <div>
+            <div class="phase-col-label">Build</div>
+            <ul class="phase-items">
+              <li>RODI Score API — banks + fintechs + employers</li>
+              <li>CRDB / NMB fast-track loan programme</li>
+              <li>Employer "RODI Verified" hiring badge</li>
+              <li>SME compliance dashboard for small businesses</li>
+              <li>Partner discount marketplace (insurance, travel)</li>
+              <li>TRA Revenue Intelligence Dashboard</li>
+            </ul>
+          </div>
+          <div>
+            <div class="phase-col-label">Intelligence</div>
+            <ul class="phase-items">
+              <li>TRA forecasting model from RODI data</li>
+              <li>Informal economy tax base mapping</li>
+              <li>Real-time compliance heatmap by region</li>
+              <li>AI-powered audit risk detection</li>
+              <li>Youth financial health index (published)</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-kpi">
+          <div class="kpi-item"><div class="kpi-num">1M+</div><div class="kpi-label">Registered users</div></div>
+          <div class="kpi-item"><div class="kpi-num">30+</div><div class="kpi-label">Partner integrations</div></div>
+          <div class="kpi-item"><div class="kpi-num">TSh 4.5B</div><div class="kpi-label">Annual platform revenue</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="phase phase-4">
+      <div class="phase-time">Months<br>25–36</div>
+      <div class="phase-dot"></div>
+      <div class="phase-content">
+        <div class="phase-header">
+          <span class="phase-badge">Phase 4</span>
+          <span class="phase-title">Platform — Tanzania Exports the Model</span>
+        </div>
+        <p style="font-size:13px;color:var(--ink-light);margin-bottom:1rem;">RODI becomes an open platform infrastructure layer. Third-party developers build on the Score API. EAC countries licence the model. Tanzania becomes the continental reference for civic tax tech.</p>
+        <div class="phase-grid">
+          <div>
+            <div class="phase-col-label">Expand</div>
+            <ul class="phase-items">
+              <li>B2B Tax Compliance SaaS for SMEs</li>
+              <li>Open API: NGOs, universities, fintechs build on RODI</li>
+              <li>RODI for Schools — tax literacy national curriculum</li>
+              <li>EAC expansion: Uganda, Kenya, Rwanda pilots</li>
+              <li>Regional employer marketplace (EAC talent)</li>
+            </ul>
+          </div>
+          <div>
+            <div class="phase-col-label">Legacy</div>
+            <ul class="phase-items">
+              <li>Tanzania as the African model for voluntary tax compliance</li>
+              <li>TRA recognised as a global civic tech innovator</li>
+              <li>Self-sustaining — no donor dependency</li>
+              <li>3M+ youth on one national compliance platform</li>
+              <li>5T+ TZS additional annual tax revenue attributed</li>
+            </ul>
+          </div>
+        </div>
+        <div class="phase-kpi">
+          <div class="kpi-item"><div class="kpi-num">3M+</div><div class="kpi-label">Total registered users</div></div>
+          <div class="kpi-item"><div class="kpi-num">3+</div><div class="kpi-label">EAC countries on platform</div></div>
+          <div class="kpi-item"><div class="kpi-num">TSh 12B+</div><div class="kpi-label">Annual platform revenue</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BUSINESS MODEL -->
+<section id="business">
+  <div class="section-label">05 — Business Model</div>
+  <h2>Free for citizens. Paid by institutions.</h2>
+  <p class="section-intro">RODI is always free for every Tanzanian. The revenue comes from the banks, employers, and fintechs who benefit most from a financially legible youth population.</p>
+
+  <div class="biz-grid">
+
+    <div class="biz-card featured">
+      <div>
+        <h3>The Core Logic</h3>
+        <p>Tanzania has 17M+ youth with no unified tax engagement platform. Every bank, employer, fintech, and telco wants verified access to this audience. TRA has the mandate. RODI is the bridge — and the bridge charges a toll to the institutions, not the people.</p>
+        <p style="margin-top:1rem;">This mirrors the credit bureau model — but built on tax compliance (a positive signal) rather than debt history. In a cash economy, this is far more powerful and inclusive.</p>
+      </div>
+      <div class="partner-tiers">
+        <div class="tier dhahabu">
+          <div>
+            <div class="tier-name">🥇 Dhahabu Partner</div>
+            <div class="tier-perks">Score API access · Co-branded campaigns · Category exclusivity · First-party data reports</div>
+          </div>
+          <div class="tier-val">TSh 500M/yr</div>
+        </div>
+        <div class="tier fedha">
+          <div>
+            <div class="tier-name">🥈 Fedha Partner</div>
+            <div class="tier-perks">Score API access · Platform placement · Quarterly analytics portal</div>
+          </div>
+          <div class="tier-val">TSh 150M/yr</div>
+        </div>
+        <div class="tier shaba">
+          <div>
+            <div class="tier-name">🥉 Shaba Partner</div>
+            <div class="tier-perks">Reward contribution · Basic analytics · Brand visibility on platform</div>
+          </div>
+          <div class="tier-val">TSh 50M/yr</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <h3>Year 1–2 Revenue</h3>
+      <p class="biz-desc">Pilot through national rollout. Conservative estimates: 2 Dhahabu + 6 Fedha + 10 Shaba partners plus API and Government SaaS revenue.</p>
+      <div>
+        <div class="stream"><span class="stream-name">Government SaaS (TRA licence fee)</span><span class="stream-amt">TSh 500M</span></div>
+        <div class="stream"><span class="stream-name">Dhahabu partner sponsorships (×2)</span><span class="stream-amt">TSh 1.0B</span></div>
+        <div class="stream"><span class="stream-name">Fedha partner sponsorships (×6)</span><span class="stream-amt">TSh 900M</span></div>
+        <div class="stream"><span class="stream-name">Shaba partner contributions (×10)</span><span class="stream-amt">TSh 500M</span></div>
+        <div class="stream"><span class="stream-name">Employer API access fees</span><span class="stream-amt">TSh 200M</span></div>
+      </div>
+      <div class="revenue-total">
+        <span class="revenue-total-label">Year 2 Annual Revenue</span>
+        <span class="revenue-total-num">TSh 3.1B</span>
+      </div>
+    </div>
+
+    <div class="biz-card">
+      <h3>Year 3–4 Revenue</h3>
+      <p class="biz-desc">Open API + EAC expansion era. Score API per-query fees and regional licensing open new high-margin revenue lines.</p>
+      <div>
+        <div class="stream"><span class="stream-name">Government SaaS (expanded regions)</span><span class="stream-amt">TSh 1.5B</span></div>
+        <div class="stream"><span class="stream-name">Dhahabu + Fedha partnerships</span><span class="stream-amt">TSh 4.0B</span></div>
+        <div class="stream"><span class="stream-name">RODI Score API (per-query fees)</span><span class="stream-amt">TSh 1.2B</span></div>
+        <div class="stream"><span class="stream-name">B2B SME compliance SaaS</span><span class="stream-amt">TSh 800M</span></div>
+        <div class="stream"><span class="stream-name">EAC platform licensing (Uganda, Kenya)</span><span class="stream-amt">TSh 2.0B</span></div>
+        <div class="stream"><span class="stream-name">RODI for Schools (curriculum licensing)</span><span class="stream-amt">TSh 300M</span></div>
+      </div>
+      <div class="revenue-total">
+        <span class="revenue-total-label">Year 4 Annual Revenue</span>
+        <span class="revenue-total-num">TSh 9.8B</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- GROWTH FLYWHEEL -->
+<section id="flywheel" style="background:var(--cream);">
+  <div class="section-label">06 — Growth Flywheel</div>
+  <h2>Self-reinforcing by design</h2>
+  <p class="section-intro">RODI doesn't need TRA to chase compliance. The flywheel means the system pulls people in — and keeps them — without enforcement.</p>
+
+  <div class="flywheel-wrap">
+    <div class="flywheel-svg-area">
+      <svg viewBox="0 0 340 340" width="100%" style="max-width:320px;display:block;margin:0 auto;">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <!-- Ring -->
+        <circle cx="170" cy="170" r="120" fill="none" stroke="#E1F5EE" stroke-width="1.5"/>
+        <!-- Center -->
+        <circle cx="170" cy="170" r="44" fill="#04342C"/>
+        <text x="170" y="163" text-anchor="middle" font-family="'DM Serif Display', serif" font-size="22" fill="white">RODI</text>
+        <text x="170" y="180" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" fill="rgba(255,255,255,0.5)" letter-spacing="0.06em">FLYWHEEL</text>
+        <!-- Nodes -->
+        <!-- Top: Youth file -->
+        <circle cx="170" cy="50" r="30" fill="#E1F5EE" stroke="#1D9E75" stroke-width="0.5"/>
+        <text x="170" y="46" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" font-weight="500" fill="#0F6E56">More youth</text>
+        <text x="170" y="58" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" font-weight="500" fill="#0F6E56">file taxes</text>
+        <!-- Right: Score grows -->
+        <circle cx="284" cy="170" r="30" fill="#FAEEDA" stroke="#C9973A" stroke-width="0.5"/>
+        <text x="284" y="166" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" font-weight="500" fill="#7A4F00">Score</text>
+        <text x="284" y="178" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" font-weight="500" fill="#7A4F00">grows</text>
+        <!-- Bottom: More partners -->
+        <circle cx="170" cy="290" r="30" fill="#E6F1FB" stroke="#185FA5" stroke-width="0.5"/>
+        <text x="170" y="286" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" font-weight="500" fill="#185FA5">More</text>
+        <text x="170" y="298" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" font-weight="500" fill="#185FA5">partners</text>
+        <!-- Left: Better benefits -->
+        <circle cx="56" cy="170" r="30" fill="#FAECE7" stroke="#D85A30" stroke-width="0.5"/>
+        <text x="56" y="166" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" font-weight="500" fill="#993C1D">Better</text>
+        <text x="56" y="178" text-anchor="middle" font-family="'DM Sans', sans-serif" font-size="9" font-weight="500" fill="#993C1D">benefits</text>
+        <!-- Arrows along ring -->
+        <path d="M193 57 A120 120 0 0 1 257 147" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M277 193 A120 120 0 0 1 193 283" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M147 283 A120 120 0 0 1 83 193" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#arr)"/>
+        <path d="M63 147 A120 120 0 0 1 147 57" fill="none" stroke="#1D9E75" stroke-width="1" marker-end="url(#arr)"/>
+      </svg>
+    </div>
+
+    <div class="flywheel-steps">
+      <div class="fw-step">
+        <div class="fw-num">01</div>
+        <div>
+          <div class="fw-title">More youth file taxes</div>
+          <div class="fw-desc">RODI makes compliance easy, fun, and status-conferring. Gamification and peer referrals bring in boda bodas, mama lishe, freelancers, and content creators.</div>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">02</div>
+        <div>
+          <div class="fw-title">RODI Score grows in value</div>
+          <div class="fw-desc">More users means a richer, more reliable Score signal. Banks and fintechs want access. The Score becomes a trusted credential across the economy.</div>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">03</div>
+        <div>
+          <div class="fw-title">More institutions integrate</div>
+          <div class="fw-desc">Banks, employers, and fintechs pay for Score API access. They offer real benefits to high-Score users, creating a thriving partner ecosystem.</div>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">04</div>
+        <div>
+          <div class="fw-title">Better benefits attract more youth</div>
+          <div class="fw-desc">Word spreads — "Nilikopa pesa kwa RODI yangu." New users join. Existing users file more consistently. The loop accelerates.</div>
+        </div>
+      </div>
+      <div class="fw-step">
+        <div class="fw-num">05</div>
+        <div>
+          <div class="fw-title">TRA collects more revenue</div>
+          <div class="fw-desc">Wider tax base. Better forecasting. Lower enforcement cost per taxpayer. TRA reinvests in RODI. The platform deepens and the flywheel speeds up.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAKEHOLDERS -->
+<section id="stakeholders">
+  <div class="section-label">07 — Stakeholder Value</div>
+  <h2>Everyone wins something different</h2>
+  <p class="section-intro">RODI works because each player gets what they actually want — not what they're told to want.</p>
+
+  <div class="stake-grid">
+    <div class="stake-card">
+      <div class="stake-num">01</div>
+      <h3>Vijana (Youth)</h3>
+      <p>They came for the game. They stayed for the jobs. They leave with economic identity. The hook, value, and meaning are layered intentionally.</p>
+      <ul class="stake-gets">
+        <li>Tax filing becomes effortless — 3 minutes on WhatsApp</li>
+        <li>RODI Score opens bank accounts and loan access</li>
+        <li>Employer badge fast-tracks job applications</li>
+        <li>Social status from top leaderboard rankings</li>
+        <li>Burudani discounts and fintech fee waivers</li>
+      </ul>
+    </div>
+    <div class="stake-card">
+      <div class="stake-num">02</div>
+      <h3>TRA / Government</h3>
+      <p>Finally, a platform that makes voluntary compliance more attractive than evasion — without a single enforcement officer being deployed.</p>
+      <ul class="stake-gets">
+        <li>Wider tax base among informal workers and youth</li>
+        <li>Lower cost per taxpayer acquisition</li>
+        <li>Real-time compliance data for revenue forecasting</li>
+        <li>Positive PR: TRA as innovation leader</li>
+        <li>EAC expansion — Tanzania exports the model</li>
+      </ul>
+    </div>
+    <div class="stake-card">
+      <div class="stake-num">03</div>
+      <h3>Mabenki (Banks)</h3>
+      <p>Access to millions of creditworthy informal-sector customers who were previously invisible and unbanked — without credit history assumptions.</p>
+      <ul class="stake-gets">
+        <li>RODI Score API — verified compliance history</li>
+        <li>Micro-loan pipeline from Score 500+ users</li>
+        <li>Lower default risk (compliance = financial discipline)</li>
+        <li>New customer acquisition at scale</li>
+        <li>Dhahabu sponsorship brand positioning</li>
+      </ul>
+    </div>
+    <div class="stake-card">
+      <div class="stake-num">04</div>
+      <h3>Waajiri (Employers)</h3>
+      <p>A pre-vetted talent pool with verified civic and financial responsibility — something no recruitment agency or CV can deliver.</p>
+      <ul class="stake-gets">
+        <li>"RODI Verified" badge reduces screening time</li>
+        <li>Reach 1M+ engaged youth on one platform</li>
+        <li>Cross-regional talent they couldn't find before</li>
+        <li>Employer brand built on national youth platform</li>
+        <li>Job posting API with Score-filtered matching</li>
+      </ul>
+    </div>
+    <div class="stake-card">
+      <div class="stake-num">05</div>
+      <h3>Makampuni ya Simu (Telcos &amp; Fintechs)</h3>
+      <p>The most financially engaged youth audience in Tanzania, validated by government, in one place. There is no comparable buy in any media plan.</p>
+      <ul class="stake-gets">
+        <li>Government-backed brand association</li>
+        <li>First-party youth financial data (with consent)</li>
+        <li>Product trial through Score-based incentives</li>
+        <li>Category exclusivity at Dhahabu tier</li>
+        <li>Lower user acquisition cost via RODI referrals</li>
+      </ul>
+    </div>
+    <div class="stake-card">
+      <div class="stake-num">06</div>
+      <h3>Wasanidi (Developers &amp; NGOs)</h3>
+      <p>Phase 3 opens RODI as a platform. Any organisation building for youth financial inclusion can plug into Tanzania's compliance identity layer.</p>
+      <ul class="stake-gets">
+        <li>Open API access to RODI Score (consent-gated)</li>
+        <li>Pre-built identity verification for fintech apps</li>
+        <li>National youth financial health data (aggregate)</li>
+        <li>NGO access for financial literacy programmes</li>
+        <li>EAC developer ecosystem from Phase 4</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="tech" style="background:var(--cream);">
+  <div class="section-label">08 — Technology Architecture</div>
+  <h2>Built for Tanzania, not Silicon Valley</h2>
+  <p class="section-intro">Mobile-first, USSD-capable, Kiswahili-native, and offline-tolerant. Designed for Tanzanian infrastructure reality — then scaled up from there. Builds on TRA's existing IDRAS and taxpayer portal infrastructure.</p>
+
+  <div class="tech-stack">
+    <div class="tech-layer">
+      <div class="tech-layer-label">User Layer</div>
+      <h4>Access</h4>
+      <ul class="tech-list">
+        <li>WhatsApp AI chatbot (priority)</li>
+        <li>USSD (*RODI# / *789#) — feature phones</li>
+        <li>Android app (Kiswahili-first UI)</li>
+        <li>iOS app</li>
+        <li>Web portal (taxpayersportal.tra.go.tz)</li>
+        <li>Offline mode for low-connectivity zones</li>
+      </ul>
+    </div>
+    <div class="tech-layer">
+      <div class="tech-layer-label">Identity Layer</div>
+      <h4>Trust</h4>
+      <ul class="tech-list">
+        <li>NIDA integration (Mainland Tanzania)</li>
+        <li>Zanzibar NID integration</li>
+        <li>TRA IDRAS — TIN linkage</li>
+        <li>Biometric verification (optional)</li>
+        <li>Consent management engine</li>
+        <li>Anti-fraud &amp; duplicate detection</li>
+      </ul>
+    </div>
+    <div class="tech-layer">
+      <div class="tech-layer-label">Platform Layer</div>
+      <h4>Engine</h4>
+      <ul class="tech-list">
+        <li>RODI Score calculation engine</li>
+        <li>Compliance event ledger (immutable log)</li>
+        <li>Gamification: XP, badges, streaks</li>
+        <li>Reward &amp; benefit redemption engine</li>
+        <li>Partner API gateway (Score queries)</li>
+        <li>Open API — Phase 3</li>
+      </ul>
+    </div>
+    <div class="tech-layer">
+      <div class="tech-layer-label">Intelligence Layer</div>
+      <h4>AI &amp; Data</h4>
+      <ul class="tech-list">
+        <li>Kiswahili NLP model (tax domain)</li>
+        <li>TRA Revenue Forecasting Dashboard</li>
+        <li>Compliance heatmap by region/sector</li>
+        <li>Informal economy tax base mapping</li>
+        <li>AI job-matching engine — Phase 3</li>
+        <li>National Youth Financial Health Index</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- RISK -->
+<section id="risk">
+  <div class="section-label">09 — Risk &amp; Mitigation</div>
+  <h2>Know the risks. Own the answers.</h2>
+  <p class="section-intro">Every strong idea has risks. These are the most significant — and exactly how RODI handles them.</p>
+
+  <div class="risk-grid">
+    <div class="risk-card high">
+      <div class="risk-label">High — Adoption</div>
+      <div class="risk-title">Youth don't register or don't stay active after the first month</div>
+      <div class="risk-mitigation">Mitigation: Lead with burudani, not civic messaging. First RODI benefit must be felt within 2 weeks of joining. 1,000 campus and mtaa ambassador programme activates peer pressure. Streak mechanics punish inactivity with visible score decay.</div>
+    </div>
+    <div class="risk-card high">
+      <div class="risk-label">High — Institutional</div>
+      <div class="risk-title">Banks and fintechs don't integrate the RODI Score API</div>
+      <div class="risk-mitigation">Mitigation: Phase 1 builds the Score in isolation — no partner dependency. Phase 2 launches with 2–3 anchor partners (CRDB, Nala) who co-design the product. Pilot data showing compliance-to-creditworthiness correlation is the sales tool.</div>
+    </div>
+    <div class="risk-card med">
+      <div class="risk-label">Medium — Technology</div>
+      <div class="risk-title">USSD / mobile gaps in rural Tanzania limit reach</div>
+      <div class="risk-mitigation">Mitigation: Phase 1 is urban only (Dar, Dodoma, Mwanza). USSD ensures no smartphone dependency for core compliance. Offline point-earning at physical TRA offices and partner locations. Rural rollout begins Phase 3 with improved infrastructure.</div>
+    </div>
+    <div class="risk-card med">
+      <div class="risk-label">Medium — Commercial</div>
+      <div class="risk-title">Partner revenue doesn't materialise at projected scale</div>
+      <div class="risk-mitigation">Mitigation: Government SaaS revenue (TRA licence fee) covers core operating costs regardless of partner uptake. 18-month minimum contracts at Dhahabu tier. Monthly ROI reports proving acquisition cost vs. market rate provide retention argument.</div>
+    </div>
+    <div class="risk-card low">
+      <div class="risk-label">Low — Fraud</div>
+      <div class="risk-title">Youth game the system to earn XP without genuine compliance</div>
+      <div class="risk-mitigation">Mitigation: NIDA-verified identity prevents duplicate accounts. All compliance actions are cross-verified with TRA's IDRAS in real time — you can't fake a filed return. High-value Score milestones require 3+ months of verified history.</div>
+    </div>
+    <div class="risk-card low">
+      <div class="risk-label">Low — Privacy</div>
+      <div class="risk-title">Youth data misuse, breach, or misappropriation</div>
+      <div class="risk-mitigation">Mitigation: All data is sovereign — stored in Tanzania, custodied by TRA. Partners receive Score queries only, never raw compliance data. Consent is explicit, granular, and revocable at any time. No data is sold; partners pay for API calls, not profiles.</div>
+    </div>
+  </div>
+
+  <!-- NORTH STAR METRICS -->
+  <div class="metrics-banner">
+    <div class="metric-cell">
+      <div class="metric-val">3M+</div>
+      <div class="metric-label">Registered RODI users by Year 3</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val">+5T TZS</div>
+      <div class="metric-label">Additional tax revenue attributed annually</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val">30+</div>
+      <div class="metric-label">Banks, fintechs & employers integrated</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val">72%</div>
+      <div class="metric-label">Youth aware of RODI in target cities</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val">3</div>
+      <div class="metric-label">East African markets live by Year 4</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">RO<em>DI</em></div>
+  <div class="footer-tagline">Rudisha · Ongeza · Develop · Inspire — Lipa kodi, jenga nchi.</div>
+  <p>Prepared for Tanzania Revenue Authority · Product Roadmap & Business Model · 2025–2028 · Confidential</p>
+</footer>
+
+</body>
+</html>
